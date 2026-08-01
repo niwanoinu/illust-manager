@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>イラスト制作管理</title>
+
+<!-- ===== PWA関連の設定 ===== -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#8a5a34">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="イラスト管理">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<!-- ===== CSS読み込み（今は1つだけ。今後ページごとに増やす予定） ===== -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ===== 上部バー：タイトル＋ナビゲーション ===== -->
+  <header id="topbar">
+    <div id="topbar-title">イラスト管理</div>
+    <nav id="nav">
+      <button class="nav-item" data-page="home">ホーム</button>
+      <button class="nav-item" data-page="sample">サンプル</button>
+    </nav>
+  </header>
+
+  <!-- ===== メインコンテンツ：ページはここに追加していく ===== -->
+  <main id="main">
+
+    <section class="page" id="page-home">
+      <h2>ホーム</h2>
+      <p>ここがホーム画面です。土台（フェーズ0）が正しく動いているかの確認用ページです。</p>
+      <p id="storage-check">保存機能チェック：<span id="storage-check-result">未確認</span></p>
+    </section>
+
+    <section class="page" id="page-sample">
+      <h2>サンプルページ</h2>
+      <p>上のナビゲーションで「ホーム」⇄「サンプル」の切り替えができれば、画面切り替えの仕組み（ステップ3）は成功です。</p>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- ===== JS読み込み：機能ごとにファイルを分割 ===== -->
+<script src="js/storage.js"></script>
+<script src="js/router.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

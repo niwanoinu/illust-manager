@@ -1,0 +1,98 @@
+:root{
+  --bg:#fffdf6;
+  --panel:#ffffff;
+  --border:#f6e6ae;
+  --text:#4a3324;
+  --text-sub:#8a6a4e;
+  --mocha:#8a5a34;
+  --accent-deep:#e0a300;
+  --topbar-h:48px;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+html, body{
+  height:100%;
+  /* iPhoneのノッチ・ホームバー対応 */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI",sans-serif;
+  font-size:15px;
+  line-height:1.6;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app{
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* ===== 上部バー ===== */
+#topbar{
+  height:var(--topbar-h);
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  padding:0 14px;
+  gap:14px;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+#topbar-title{
+  font-weight:800;
+  font-size:15px;
+  color:var(--mocha);
+  white-space:nowrap;
+}
+#nav{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+}
+.nav-item{
+  font-family:inherit;
+  font-size:13px;
+  font-weight:600;
+  color:var(--text-sub);
+  background:none;
+  border:none;
+  border-bottom:2px solid transparent;
+  padding:6px 10px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.nav-item.active{
+  color:var(--mocha);
+  border-bottom-color:var(--accent-deep);
+}
+
+/* ===== メインコンテンツ ===== */
+#main{
+  flex:1;
+  width:100%;
+  max-width:640px;
+  margin:0 auto;
+  padding:20px 16px 40px;
+}
+
+.page{ display:none; }
+.page.active{ display:block; }
+
+.page h2{
+  font-size:17px;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+.page p{
+  color:var(--text-sub);
+  margin-bottom:8px;
+}
