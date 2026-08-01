@@ -23,30 +23,52 @@ function ensureProductionData(){
 }
 
 /* ----------------------------------------------------------------
-   一覧表示（カンバン）
+   一覧表示（タブで選んだ工程のカードだけを縦一列で表示する）
+   ※以前は列を横スクロールする形にしていたが、カードの横スワイプと
+   　ジェスチャーが衝突して誤動作したため、タブ切り替え方式に変更した。
 ---------------------------------------------------------------- */
+
+// 今どの工程タブを表示しているか（アプリ起動中だけ覚えていればよいのでただの変数でOK）
+let currentProductionStatus = PRODUCTION_STATUSES[0];
 
 function renderProduction(){
   ensureProductionData();
-  const wrap = document.getElementById("kanban-wrap");
-  if(!wrap) return;
+  renderProductionTabs();
+  renderProductionList();
+}
 
-  wrap.innerHTML = PRODUCTION_STATUSES.map(status => {
-    const items = DATA.works.filter(w => w.status === status);
+function renderProductionTabs(){
+  const tabsEl = document.getElementById("kanban-tabs");
+  if(!tabsEl) return;
+
+  tabsEl.innerHTML = PRODUCTION_STATUSES.map(status => {
+    const count = DATA.works.filter(w => w.status === status).length;
+    const active = status === currentProductionStatus ? "active" : "";
     return `
-      <div class="kanban-col">
-        <h4>${status}<span class="count">${items.length}</span></h4>
-        <div class="kanban-col-body">
-          ${items.length === 0
-            ? `<div class="empty-msg-small">なし</div>`
-            : items.map(w => workCardHtml(w)).join("")}
-        </div>
-      </div>
+      <button type="button" class="kanban-tab ${active}" onclick="selectProductionStatus('${status}')">
+        ${status}<span class="count">${count}</span>
+      </button>
     `;
   }).join("");
+}
+
+function selectProductionStatus(status){
+  currentProductionStatus = status;
+  renderProduction();
+}
+
+function renderProductionList(){
+  const listEl = document.getElementById("kanban-col-single");
+  if(!listEl) return;
+
+  const items = DATA.works.filter(w => w.status === currentProductionStatus);
+
+  listEl.innerHTML = items.length === 0
+    ? `<div class="empty-msg-small">このステータスの制作物はまだありません</div>`
+    : items.map(w => workCardHtml(w)).join("");
 
   // カードごとにスワイプ操作を設定する（描画のたびに設定し直す）
-  wrap.querySelectorAll(".kanban-card").forEach(card => attachSwipe(card));
+  listEl.querySelectorAll(".kanban-card").forEach(card => attachSwipe(card));
 }
 
 function workCardHtml(w){

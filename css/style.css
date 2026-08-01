@@ -199,58 +199,64 @@ body{
   margin-bottom:12px;
 }
 
-/* ===== カンバン ===== */
-.kanban-wrap{
+/* ===== カンバン：工程タブ ===== */
+.kanban-tabs{
   display:flex;
-  gap:10px;
+  gap:6px;
   overflow-x:auto;
-  padding-bottom:8px;
-  scroll-snap-type:x proximity;
-  -webkit-overflow-scrolling:touch;
+  padding-bottom:10px;
+  margin-bottom:4px;
 }
-.kanban-col{
-  flex:0 0 78%;
-  max-width:260px;
+.kanban-tab{
+  flex:0 0 auto;
+  font-family:inherit;
+  font-size:12.5px;
+  font-weight:700;
+  color:var(--text-sub);
   background:var(--bg-2);
   border:1px solid var(--border);
-  border-radius:12px;
-  padding:10px;
-  scroll-snap-align:start;
-}
-.kanban-col h4{
-  font-size:13px;
-  font-weight:800;
-  color:var(--mocha);
+  border-radius:20px;
+  padding:7px 14px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:8px;
+  gap:6px;
+  cursor:pointer;
+  white-space:nowrap;
 }
-.kanban-col h4 .count{
-  font-size:11px;
+.kanban-tab .count{
+  font-size:10.5px;
   font-weight:600;
   color:var(--text-sub);
   background:var(--panel);
   border-radius:10px;
-  padding:1px 7px;
+  padding:1px 6px;
 }
-.kanban-col-body{
+.kanban-tab.active{
+  color:#fff;
+  background:var(--mocha);
+  border-color:var(--mocha);
+}
+.kanban-tab.active .count{
+  color:var(--mocha);
+}
+
+/* ===== カンバン：カード一覧（縦一列） ===== */
+.kanban-col-single{
   display:flex;
   flex-direction:column;
   gap:8px;
-  min-height:40px;
 }
 .empty-msg-small{
-  font-size:11px;
+  font-size:12px;
   color:var(--text-dim);
   text-align:center;
-  padding:14px 0;
+  padding:30px 0;
 }
 
 .kanban-card{
   background:var(--panel);
   border-radius:10px;
-  padding:10px 12px;
+  padding:12px 14px;
   box-shadow:var(--shadow-sm);
   cursor:pointer;
   touch-action:pan-y; /* 縦スクロールは許可し、横方向はJSでスワイプ検知する */
