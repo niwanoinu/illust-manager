@@ -5,12 +5,14 @@
    キャッシュする対象は、機能を増やすたびにここに追記していく。
 ===================================================================== */
 
-const CACHE_NAME = "illust-manager-v1"; // ファイルを更新したらこの数字を上げる
+const CACHE_NAME = "illust-manager-v2"; // ファイルを更新したらこの数字を上げる
 const APP_SHELL = [
   "./",
   "./index.html",
   "./css/style.css",
   "./js/storage.js",
+  "./js/utils.js",
+  "./js/ideas.js",
   "./js/router.js",
   "./js/app.js",
   "./manifest.json",

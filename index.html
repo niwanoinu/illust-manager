@@ -27,7 +27,7 @@
     <div id="topbar-title">イラスト管理</div>
     <nav id="nav">
       <button class="nav-item" data-page="home">ホーム</button>
-      <button class="nav-item" data-page="sample">サンプル</button>
+      <button class="nav-item" data-page="ideas">アイデア</button>
     </nav>
   </header>
 
@@ -36,13 +36,18 @@
 
     <section class="page" id="page-home">
       <h2>ホーム</h2>
-      <p>ここがホーム画面です。土台（フェーズ0）が正しく動いているかの確認用ページです。</p>
-      <p id="storage-check">保存機能チェック：<span id="storage-check-result">未確認</span></p>
+      <p>ここがホーム画面です。今後、統計やダッシュボードなど全体を見渡す内容をここに置く予定です。</p>
     </section>
 
-    <section class="page" id="page-sample">
-      <h2>サンプルページ</h2>
-      <p>上のナビゲーションで「ホーム」⇄「サンプル」の切り替えができれば、画面切り替えの仕組み（ステップ3）は成功です。</p>
+    <section class="page" id="page-ideas">
+      <h2>アイデアメモ</h2>
+
+      <form id="idea-form" class="idea-form">
+        <input type="text" id="idea-input" class="idea-input" placeholder="思いついたアイデアを入力…" autocomplete="off">
+        <button type="submit" class="btn-primary">追加</button>
+      </form>
+
+      <ul id="idea-list" class="idea-list"></ul>
     </section>
 
   </main>
@@ -51,6 +56,8 @@
 
 <!-- ===== JS読み込み：機能ごとにファイルを分割 ===== -->
 <script src="js/storage.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/ideas.js"></script>
 <script src="js/router.js"></script>
 <script src="js/app.js"></script>
 

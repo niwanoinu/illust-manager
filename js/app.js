@@ -9,20 +9,13 @@ function init(){
   // 1. 保存されているデータを読み込む
   loadData();
 
-  // 2. 保存の仕組みが動いているか簡単にチェックして画面に表示する
-  //    （フェーズ1で本格的なデータを扱うようになったら、このチェックは消してOK）
-  const resultEl = document.getElementById("storage-check-result");
-  if(resultEl){
-    try{
-      saveData();
-      resultEl.textContent = "OK（保存→読み込みが動作しています）";
-    }catch(err){
-      resultEl.textContent = "エラー：" + err.message;
-    }
-  }
-
-  // 3. ナビゲーションのボタンにクリックイベントを設定
+  // 2. ナビゲーションのボタンにクリックイベントを設定
   initRouter();
+
+  // 3. 各機能の初期化・初回描画
+  //    機能が増えるたびに、ここに1行ずつ追加していく
+  initIdeasForm();
+  renderIdeas();
 
   // 4. 前回開いていたページ（なければホーム）を表示
   const lastPage = sessionStorage.getItem("currentPage") || "home";

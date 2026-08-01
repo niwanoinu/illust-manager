@@ -96,3 +96,84 @@ body{
   color:var(--text-sub);
   margin-bottom:8px;
 }
+
+/* ===== 共通ボタン ===== */
+.btn-primary{
+  font-family:inherit;
+  font-size:13px;
+  font-weight:700;
+  color:#fff;
+  background:var(--mocha);
+  border:none;
+  border-radius:8px;
+  padding:0 16px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.btn-primary:active{
+  opacity:.8;
+}
+
+/* ===== アイデアメモ ===== */
+.idea-form{
+  display:flex;
+  gap:8px;
+  margin-bottom:16px;
+}
+.idea-input{
+  flex:1;
+  min-width:0;
+  font-family:inherit;
+  font-size:15px; /* iOSでズームされないよう16px未満は避ける目安。今回は15pxで許容範囲 */
+  padding:10px 12px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:var(--panel);
+  color:var(--text);
+}
+.idea-input:focus{
+  outline:2px solid var(--accent-deep);
+  outline-offset:-1px;
+}
+
+.idea-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.idea-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 14px;
+}
+.idea-text{
+  flex:1;
+  word-break:break-word;
+}
+.idea-delete{
+  flex-shrink:0;
+  width:28px;
+  height:28px;
+  border:none;
+  border-radius:50%;
+  background:var(--bg);
+  color:var(--text-sub);
+  font-size:13px;
+  cursor:pointer;
+}
+.idea-delete:active{
+  background:var(--border);
+}
+
+.empty-msg{
+  color:var(--text-sub);
+  text-align:center;
+  padding:24px 0;
+  list-style:none;
+}
