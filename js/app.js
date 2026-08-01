@@ -16,6 +16,7 @@ function init(){
   //    機能が増えるたびに、ここに1行ずつ追加していく
   initIdeasForm();
   renderIdeas();
+  renderProduction();
 
   // 4. 前回開いていたページ（なければホーム）を表示
   const lastPage = sessionStorage.getItem("currentPage") || "home";

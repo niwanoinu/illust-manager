@@ -1,11 +1,18 @@
 :root{
   --bg:#fffdf6;
+  --bg-2:#fff8e4;
   --panel:#ffffff;
   --border:#f6e6ae;
   --text:#4a3324;
   --text-sub:#8a6a4e;
+  --text-dim:#c2a988;
   --mocha:#8a5a34;
   --accent-deep:#e0a300;
+  --accent-light:#fff6d4;
+  --pink-light:#fbe9ee;
+  --peach-light:#fdece0;
+  --danger:#e28a8a;
+  --shadow-sm:0 2px 8px rgba(220,170,60,0.14);
   --topbar-h:48px;
 }
 
@@ -176,4 +183,209 @@ body{
   text-align:center;
   padding:24px 0;
   list-style:none;
+}
+
+/* ===== ページ共通ヘッダー ===== */
+.page-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+  gap:10px;
+}
+.hint-text{
+  font-size:12px;
+  color:var(--text-dim);
+  margin-bottom:12px;
+}
+
+/* ===== カンバン ===== */
+.kanban-wrap{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:8px;
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+}
+.kanban-col{
+  flex:0 0 78%;
+  max-width:260px;
+  background:var(--bg-2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px;
+  scroll-snap-align:start;
+}
+.kanban-col h4{
+  font-size:13px;
+  font-weight:800;
+  color:var(--mocha);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+}
+.kanban-col h4 .count{
+  font-size:11px;
+  font-weight:600;
+  color:var(--text-sub);
+  background:var(--panel);
+  border-radius:10px;
+  padding:1px 7px;
+}
+.kanban-col-body{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-height:40px;
+}
+.empty-msg-small{
+  font-size:11px;
+  color:var(--text-dim);
+  text-align:center;
+  padding:14px 0;
+}
+
+.kanban-card{
+  background:var(--panel);
+  border-radius:10px;
+  padding:10px 12px;
+  box-shadow:var(--shadow-sm);
+  cursor:pointer;
+  touch-action:pan-y; /* 縦スクロールは許可し、横方向はJSでスワイプ検知する */
+}
+.kanban-card.swiping{
+  transition:none;
+}
+
+.k-title{
+  font-weight:700;
+  font-size:13px;
+  margin-bottom:4px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.k-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  font-size:10.5px;
+  color:var(--text-sub);
+}
+.k-badge{
+  background:var(--accent-light);
+  color:var(--mocha);
+  border-radius:6px;
+  padding:1px 6px;
+  font-weight:600;
+}
+.k-badge-request{ background:var(--pink-light); }
+.k-badge-fan{ background:var(--peach-light); }
+
+/* ===== モーダル（下からせり上がるフォーム） ===== */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(74,51,36,.45);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:1000;
+}
+.modal-box{
+  background:var(--panel);
+  width:100%;
+  max-width:480px;
+  max-height:88vh;
+  overflow-y:auto;
+  border-radius:16px 16px 0 0;
+  padding:20px 18px calc(20px + env(safe-area-inset-bottom));
+}
+.modal-box h3{
+  font-size:15px;
+  font-weight:800;
+  margin-bottom:14px;
+}
+.modal-box label{
+  display:block;
+  font-size:12px;
+  font-weight:600;
+  color:var(--text-sub);
+  margin-bottom:12px;
+}
+.modal-box input,
+.modal-box select,
+.modal-box textarea{
+  display:block;
+  width:100%;
+  font-family:inherit;
+  font-size:15px;
+  padding:8px 10px;
+  margin-top:4px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:var(--bg);
+  color:var(--text);
+}
+.modal-box textarea{
+  resize:vertical;
+}
+.modal-box .field.hidden{
+  display:none;
+}
+.modal-actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:8px;
+  gap:8px;
+}
+
+.btn-secondary{
+  font-family:inherit;
+  font-size:13px;
+  font-weight:700;
+  color:var(--text-sub);
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:8px 14px;
+  cursor:pointer;
+}
+.btn-danger{
+  font-family:inherit;
+  font-size:13px;
+  font-weight:700;
+  color:#fff;
+  background:var(--danger);
+  border:none;
+  border-radius:8px;
+  padding:8px 14px;
+  cursor:pointer;
+}
+
+/* ===== トースト通知 ===== */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%) translateY(10px);
+  background:var(--mocha);
+  color:#fff;
+  font-size:12px;
+  padding:8px 16px;
+  border-radius:20px;
+  opacity:0;
+  transition:opacity .25s, transform .25s;
+  z-index:2000;
+  white-space:nowrap;
+  max-width:80vw;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
 }

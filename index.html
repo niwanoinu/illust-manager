@@ -28,6 +28,7 @@
     <nav id="nav">
       <button class="nav-item" data-page="home">ホーム</button>
       <button class="nav-item" data-page="ideas">アイデア</button>
+      <button class="nav-item" data-page="production">制作管理</button>
     </nav>
   </header>
 
@@ -50,14 +51,28 @@
       <ul id="idea-list" class="idea-list"></ul>
     </section>
 
+    <section class="page" id="page-production">
+      <div class="page-header">
+        <h2>制作管理</h2>
+        <button type="button" class="btn-primary" onclick="openAddWorkModal()">＋ 追加</button>
+      </div>
+      <p class="hint-text">カードを左右にスワイプすると工程を移動できます。タップすると詳細を編集できます。</p>
+      <div class="kanban-wrap" id="kanban-wrap"></div>
+    </section>
+
   </main>
 
 </div>
 
+<!-- ===== モーダル表示用の入れ物（追加・編集フォームなどをここに描画） ===== -->
+<div id="modal-root"></div>
+
 <!-- ===== JS読み込み：機能ごとにファイルを分割 ===== -->
 <script src="js/storage.js"></script>
 <script src="js/utils.js"></script>
+<script src="js/modal.js"></script>
 <script src="js/ideas.js"></script>
+<script src="js/production.js"></script>
 <script src="js/router.js"></script>
 <script src="js/app.js"></script>
 
